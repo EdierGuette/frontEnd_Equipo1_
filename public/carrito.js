@@ -146,7 +146,7 @@ paymentForm.addEventListener('submit', async (e) => {
     };
     try {
         // Obtener token desde el servidor de equipo2 (backend)
-        const tokenResponse = await fetch('http://localhost:3001/api/token');
+        const tokenResponse = await fetch('https://bancopasarela-equipo2.onrender.com/api/token');
         if (!tokenResponse.ok) {
             throw new Error('Error al obtener el token');
         }
@@ -154,7 +154,7 @@ paymentForm.addEventListener('submit', async (e) => {
         const token = tokenData.token;
 
         // Enviar datos al servidor de equipo2 con token en header Authorization
-        const response = await fetch('http://localhost:3001/api/pagar', {
+        const response = await fetch('https://bancopasarela-equipo2.onrender.com/api/pagar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -182,7 +182,7 @@ paymentForm.addEventListener('submit', async (e) => {
             renderCarrito();
 
             // Redirect to banco_pasarela payment page after successful payment request
-            window.location.href = 'http://localhost:3001/';
+            window.location.href = 'https://bancopasarela-equipo2.onrender.com/';
         } else {
             alert('El pago no fue aprobado. Intente nuevamente.');
         }

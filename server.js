@@ -230,7 +230,7 @@ app.get('/api/courses/:id', async (req, res) => {
 // Proxy endpoint to forward payment data to banco_pasarela
 app.post('/api/pagar', async (req, res) => {
     try {
-        const response = await axios.post('http://localhost:3001/api/pagar', req.body, {
+        const response = await axios.post('https://bancopasarela-equipo2.onrender.com/api/pagar', req.body, {
             headers: { 'Content-Type': 'application/json' }
         });
         res.status(response.status).send(response.data);
@@ -268,7 +268,7 @@ let equipo2Token = null;
 // Función para obtener el token desde equipo2
 async function fetchEquipo2Token() {
     try {
-        const response = await axios.get('http://localhost:3001/api/token');
+        const response = await axios.get('https://bancopasarela-equipo2.onrender.com/api/token');
         equipo2Token = response.data.token;
         console.log('Token obtenido de equipo2:', equipo2Token);
     } catch (error) {
@@ -288,7 +288,7 @@ app.post('/api/pagar', async (req, res) => {
         if (!equipo2Token) {
             await fetchEquipo2Token();
         }
-        const response = await axios.post('http://localhost:3001/api/pagar', req.body, {
+        const response = await axios.post('https://bancopasarela-equipo2.onrender.com/api/pagar', req.body, {
             headers: { 
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${equipo2Token}`
