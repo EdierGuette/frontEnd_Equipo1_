@@ -63,7 +63,7 @@ const User = mongoose.model('usuarios', userSchema);
 
 // Home route
 app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: 'public' });
+    res.sendFile('login.html', { root: 'public' });
 });
 
 // API endpoint to get courses from DB
